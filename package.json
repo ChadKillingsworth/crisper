@@ -21,7 +21,9 @@
   "homepage": "https://github.com/PolymerLabs/crisper",
   "dependencies": {
     "command-line-args": "^2.0.2",
-    "dom5": "^1.0.1"
+    "dom5": "chadkillingsworth/dom5#parse5-2.x",
+    "parse5": "^2.2.1",
+    "source-map": "^0.5.6"
   },
   "devDependencies": {
     "chai": "^3.4.0",
