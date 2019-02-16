@@ -1,6 +1,6 @@
 {
-  "name": "crisper",
-  "version": "2.0.2",
+  "name": "@banno/crisper",
+  "version": "2.0.3",
   "description": "Make an HTML file with inline scripts CSP compliant",
   "main": "index.js",
   "bin": {
@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/PolymerLabs/crisper",
   "dependencies": {
+    "@banno/dom5": "1.3.5",
     "command-line-args": "^2.0.2",
-    "dom5": "chadkillingsworth/dom5#parse5-2.x",
     "parse5": "^2.2.1",
     "source-map": "^0.5.6"
   },

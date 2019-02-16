@@ -11,7 +11,7 @@
 // jshint node: true
 'use strict';
 
-var dom5 = require('dom5');
+var dom5 = require('@banno/dom5');
 var parse5 = require('parse5');
 var pred = dom5.predicates;
 var sourcemaps = require('source-map');
@@ -84,16 +84,20 @@ module.exports = function crisp(options) {
       originalMap.eachMapping(function(mapping) {
         var newMapping = {
           source: mapping.source,
-          original: {
-            line: mapping.originalLine,
-            column: mapping.originalColumn
-          },
           generated: {
             line: mapLineOffset - leadingBlankLines + (mapping.generatedLine - sn.__location.startTag.line + 1),
             column: mapping.generatedColumn -
                 (mapping.generatedLine - sn.__location.startTag.line === 1 ? firstLineColumnOffset : 0)
           }
         };
+
+        if (mapping.originalLine !== undefined && mapping.originalLine !== null &&
+            mapping.originalColumn !== undefined && mapping.originalColumn !== null) {
+          newMapping.original = {
+            line: mapping.originalLine,
+            column: mapping.originalColumn
+          };
+        }
 
         if (mapping.name) {
           newMapping.name = mapping.name;
@@ -130,7 +134,7 @@ module.exports = function crisp(options) {
   if (hasSourceMappings) {
     var base64Map = new Buffer(outputMap.toString()).toString('base64');
     contents.push('\n//# sourceMappingURL=data:application/json;charset=utf8;base64,' + base64Map + '\n');
-  }
+  } else {}
 
   var html = parse5.serialize(doc);
   // newline + semicolon should be enough to capture all cases of concat
